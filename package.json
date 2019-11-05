@@ -1,0 +1,29 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "React calculator using typescript, redux(easy-peasy) and parceljs",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rashad25evans/react-calculator.git"
+  },
+  "author": "Rashad Mahmudov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rashad25evans/react-calculator/issues"
+  },
+  "homepage": "https://github.com/rashad25evans/react-calculator#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  }
+}
