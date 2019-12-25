@@ -2,9 +2,9 @@ import * as React from "react";
 
 const Display: React.FC = props => {
   return (
-    <React.Fragment>
-      <div id="display">display</div>
-    </React.Fragment>
+    <div>
+      <div id="display">d</div>
+    </div>
   );
 };
 

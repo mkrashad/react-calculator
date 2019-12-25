@@ -1,13 +1,12 @@
 import * as React from "react";
-import UserInterface from "./Interfaces/UserInterface";
+// import UserInterface from "./Interfaces/UserInterface";
+import ButtonsInterface from "./Interfaces/ButtonsInterface";
 import NumberItem from "./components/NumberItem";
 import OperationItem from "./components/OperationItem";
 import Display from "./components/Display";
 
-const App: React.FC<UserInterface> = props => {
-  const [count, setCount] = React.useState(0);
-
-  const numbers = [
+const App: React.FC<ButtonsInterface> = () => {
+  const [numbers, setNumber] = React.useState([
     {
       id: "zero",
       label: 0
@@ -48,17 +47,26 @@ const App: React.FC<UserInterface> = props => {
       id: "nine",
       label: 9
     }
-  ];
+  ]);
+
+  const addition = () => {
+    let a,
+      b = 0;
+  };
+
+  const clearDisplay = () => {
+    console.log(numbers[6].label);
+  };
 
   return (
-    <div>
+    <React.Fragment>
       {/* <div onClick={() => setCount(count + 1)}>{count}</div> */}
       {numbers.map(number => (
-        <NumberItem id={number.id} label={number.label} />
+        <NumberItem id={number.id} label={number.label} key={number.label} />
       ))}
-      <OperationItem />
+      <OperationItem clearDisplay={clearDisplay} />
       <Display />
-    </div>
+    </React.Fragment>
   );
 };
 
