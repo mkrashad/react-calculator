@@ -1,11 +1,11 @@
 import * as React from "react";
-import UserInterface from "../Interfaces/UserInterface";
+import MainInterface from "../Interfaces/MainInterface";
 
-const NumberItem: React.FC<UserInterface> = props => {
+const NumberItem: React.FC<MainInterface> = props => {
   const { id, label } = props;
   return (
     <React.Fragment>
-      <button id={id} key={label}>
+      <button id={id} key={label} onClick={props.pushButton}>
         {label}
       </button>
     </React.Fragment>

@@ -1,16 +1,27 @@
 import * as React from "react";
-import ButtonsInteface from "../Interfaces/ButtonsInterface";
+import MainInterface from "../Interfaces/MainInterface";
 
-const OperationItem: React.FC<ButtonsInteface> = props => {
-  
+const OperationItem: React.FC<MainInterface> = props => {
   return (
     <React.Fragment>
-      {/* <button id="equals" onClick={() => clearDisplay}>=</button>
-      <button id="add" onClick={() => clearDisplay}>+</button>
-      <button id="subtract" onClick={() => clearDisplay}>-</button>
-      <button id="multiply" onClick={() => clearDisplay}>*</button>
-      <button id="divide" onClick={() => clearDisplay}>/</button>
-      <button id="decimal" onClick={() => clearDisplay}>.</button> */}
+      <button id="equals" onClick={props.arithmOp}>
+        =
+      </button>
+      <button id="add" onClick={props.arithmOp}>
+        +
+      </button>
+      <button id="subtract" onClick={props.arithmOp}>
+        -
+      </button>
+      <button id="multiply" onClick={props.arithmOp}>
+        *
+      </button>
+      <button id="divide" onClick={props.arithmOp}>
+        /
+      </button>
+      <button id="decimal" onClick={props.arithmOp}>
+        .
+      </button>
       <button id="clear" onClick={props.clearDisplay}>
         clear
       </button>
