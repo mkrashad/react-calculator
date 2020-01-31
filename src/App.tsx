@@ -49,42 +49,54 @@ const App: React.FC<MainInterface> = () => {
   ];
   const [numbers, setNumber] = React.useState(0);
 
-  const useEffect = () => {
-    console.log("dsdsd");
+  useEffect(() => {
+    document.title = `Hello ${name}`;
+  }, [name])
+
+  const pressButton = e => {
+    // let a: any = e.target.innerHTML;
+    // let sum: any = [];
+    // for (let i: number; i < 10; i++) {
+    //   sum.push(a);
+    // }
+    // console.log(sum);
+    // // setNumber(a);
+    setNumber(5);
   };
 
-  const arithmOp = e => {
-    // let num1, num2: number;
-    let operator: any = e.target.innerHTML;
-    console.log(operator);
-  };
-
-  const clearDisplay = () => {
-    console.log(0);
-  };
-
-  const pushButton = e => {
-    let a: number = numbers[e.target.innerHTML].label;
-    let b: number = numbers[e.target.innerHTML].label;
-    // a = numbers[e.target.innerHTML].label;
-    // a = e.target.innerHTML;
-    // sum = parseInt(a) + parseInt(a);
-    console.log(a, b);
+  const arithmOperation = e => {
+    let arithmOp: number;
+    if (e.target.innerHTML === "+") {
+      arithmOp = numbers + e.target.innerHTML;
+      console.log(arithmOp);
+    } else if (e.target.innerHTML === "-") {
+      arithmOp = numbers - 2;
+      console.log(arithmOp);
+    } else if (e.target.innerHTML === "*") {
+      arithmOp = numbers * 2;
+      console.log(arithmOp);
+    } else if (e.target.innerHTML === "/") {
+      arithmOp = numbers / 2;
+      console.log(arithmOp);
+    } else {
+      setNumber(0);
+      arithmOp = 0;
+      console.log(arithmOp);
+    }
   };
 
   return (
     <React.Fragment>
-      {/* <div onClick={() => setCount(count + 1)}>{count}</div> */}
       {staticNumbers.map(number => (
         <NumberItem
           id={number.id}
           label={number.label}
           key={number.label}
-          pushButton={pushButton}
+          pressButton={pressButton}
         />
       ))}
-      <OperationItem clearDisplay={clearDisplay} arithmOp={arithmOp} />
-      <Display arithmOp={arithmOp} />
+      <OperationItem pressButton={pressButton} />
+      <Display numbers={numbers} />
     </React.Fragment>
   );
 };

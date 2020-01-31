@@ -5,7 +5,7 @@ const NumberItem: React.FC<MainInterface> = props => {
   const { id, label } = props;
   return (
     <React.Fragment>
-      <button id={id} key={label} onClick={props.pushButton}>
+      <button id={id} key={label} onClick={props.pressButton}>
         {label}
       </button>
     </React.Fragment>
