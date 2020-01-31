@@ -49,9 +49,9 @@ const App: React.FC<MainInterface> = () => {
   ];
   const [numbers, setNumber] = React.useState(0);
 
-  useEffect(() => {
-    document.title = `Hello ${name}`;
-  }, [name])
+  // useEffect(() => {
+  //   document.title = `Hello ${name}`;
+  // }, [name])
 
   const pressButton = e => {
     // let a: any = e.target.innerHTML;
