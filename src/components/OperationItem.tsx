@@ -22,7 +22,7 @@ const OperationItem: React.FC<MainInterface> = props => {
       <button id="decimal" onClick={props.pressButton}>
         .
       </button>
-      <button id="clear" onClick={props.pressButton}>
+      <button id="clear" onClick={props.clearDisplay}>
         clear
       </button>
     </React.Fragment>
