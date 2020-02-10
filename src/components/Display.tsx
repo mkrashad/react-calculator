@@ -1,11 +1,13 @@
 import * as React from "react";
-import MainInterface from "../Interfaces/MainInterface";
+import StateInterface from "../Interfaces/StateInterface";
 
-const Display: React.FC<MainInterface> = props => {
+const Display: React.FC<StateInterface> = props => {
   return (
-    <div>
-      <div id="display">{props.currentValue}</div>
-    </div>
+    <React.Fragment>
+      <div id="display">{props.prevValue}</div>
+      <div>{props.currentValue}</div>
+      <div>{props.total}</div>
+    </React.Fragment>
   );
 };
 
