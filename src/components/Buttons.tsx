@@ -1,37 +1,37 @@
 import * as React from "react";
-import MainInterface from "../Interfaces/MainInterface";
+import MainInterface from "../Interfaces/FunctionInterface";
 
 const Buttons: React.FC<MainInterface> = props => {
   return (
     <React.Fragment>
-      <button id="zero" onClick={props.pressButton}>
+      <button id="zero" onClick={props.handeleButton}>
         0
       </button>
-      <button id="one" onClick={props.pressButton}>
+      <button id="one" onClick={props.handeleButton}>
         1
       </button>
-      <button id="two" onClick={props.pressButton}>
+      <button id="two" onClick={props.handeleButton}>
         2
       </button>
-      <button id="three" onClick={props.pressButton}>
+      <button id="three" onClick={props.handeleButton}>
         3
       </button>
-      <button id="four" onClick={props.pressButton}>
+      <button id="four" onClick={props.handeleButton}>
         4
       </button>
-      <button id="five" onClick={props.pressButton}>
+      <button id="five" onClick={props.handeleButton}>
         5
       </button>
-      <button id="six" onClick={props.pressButton}>
+      <button id="six" onClick={props.handeleButton}>
         6
       </button>
-      <button id="seven" onClick={props.pressButton}>
+      <button id="seven" onClick={props.handeleButton}>
         7
       </button>
-      <button id="eight" onClick={props.pressButton}>
+      <button id="eight" onClick={props.handeleButton}>
         8
       </button>
-      <button id="nine" onClick={props.pressButton}>
+      <button id="nine" onClick={props.handeleButton}>
         9
       </button>
     </React.Fragment>

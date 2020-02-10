@@ -1,18 +1,18 @@
 import * as React from "react";
-import MainInterface from "./Interfaces/MainInterface";
+import FunctionInterface from "./Interfaces/FunctionInterface";
 import StateInterface from "./Interfaces/StateInterface";
 import Buttons from "./components/Buttons";
 import OperationItem from "./components/Operations";
 import Display from "./components/Display";
 
-const App: React.FC<MainInterface> = () => {
+const App: React.FC<FunctionInterface> = () => {
   const [numbers, setNumber] = React.useState<StateInterface>({
     currentValue: 0,
     prevValue: 0,
     total: 0
   });
 
-  const pressButton = e => {
+  const handeleButton = e => {
     let num1 = e.target.innerHTML;
     num1 = parseInt(num1);
     let num2 = numbers.currentValue;
@@ -61,8 +61,11 @@ const App: React.FC<MainInterface> = () => {
 
   return (
     <React.Fragment>
-      <Buttons pressButton={pressButton} />
-      <OperationItem pressButton={pressButton} clearDisplay={clearDisplay} />
+      <Buttons handeleButton={handeleButton} />
+      <OperationItem
+        handeleButton={handeleButton}
+        clearDisplay={clearDisplay}
+      />
       <Display
         prevValue={numbers.prevValue}
         currentValue={numbers.currentValue}

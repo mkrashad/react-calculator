@@ -1,25 +1,25 @@
 import * as React from "react";
-import MainInterface from "../Interfaces/MainInterface";
+import FunctionInterface from "../Interfaces/FunctionInterface";
 
-const OperationItem: React.FC<MainInterface> = props => {
+const OperationItem: React.FC<FunctionInterface> = props => {
   return (
     <React.Fragment>
-      <button id="equals" onClick={props.pressButton}>
+      <button id="equals" onClick={props.handeleButton}>
         =
       </button>
-      <button id="add" onClick={props.pressButton}>
+      <button id="add" onClick={props.handeleButton}>
         +
       </button>
-      <button id="subtract" onClick={props.pressButton}>
+      <button id="subtract" onClick={props.handeleButton}>
         -
       </button>
-      <button id="multiply" onClick={props.pressButton}>
+      <button id="multiply" onClick={props.handeleButton}>
         *
       </button>
-      <button id="divide" onClick={props.pressButton}>
+      <button id="divide" onClick={props.handeleButton}>
         /
       </button>
-      <button id="decimal" onClick={props.pressButton}>
+      <button id="decimal" onClick={props.handeleButton}>
         .
       </button>
       <button id="clear" onClick={props.clearDisplay}>
