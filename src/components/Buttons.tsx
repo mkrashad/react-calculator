@@ -1,7 +1,7 @@
 import * as React from "react";
-import MainInterface from "../Interfaces/FunctionInterface";
+import FunctionInterface from "../Interfaces/FunctionInterface";
 
-const Buttons: React.FC<MainInterface> = props => {
+const Buttons: React.FC<FunctionInterface> = props => {
   return (
     <React.Fragment>
       <button id="zero" onClick={props.handeleButton}>

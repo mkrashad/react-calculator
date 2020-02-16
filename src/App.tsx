@@ -13,14 +13,12 @@ const App: React.FC<FunctionInterface> = () => {
   });
 
   const handeleButton = e => {
-    let num1 = e.target.innerHTML;
-    num1 = parseInt(num1);
-    let num2 = numbers.currentValue;
-    let sum = num1 + num2;
+    let num1: number = numbers.currentValue;
+    let num2: number = e.target.innerHTML;
     setNumber({
-      currentValue: num1,
+      currentValue: num1 != 0 ? num1 + num2 : num2,
       prevValue: num2,
-      total: sum
+      total: 0
     });
   };
 
@@ -60,18 +58,18 @@ const App: React.FC<FunctionInterface> = () => {
   // };
 
   return (
-    <React.Fragment>
+    <div style={{ marginLeft: 500 }}>
       <Buttons handeleButton={handeleButton} />
       <OperationItem
         handeleButton={handeleButton}
         clearDisplay={clearDisplay}
       />
       <Display
-        prevValue={numbers.prevValue}
         currentValue={numbers.currentValue}
+        prevValue={numbers.prevValue}
         total={numbers.total}
       />
-    </React.Fragment>
+    </div>
   );
 };
 
