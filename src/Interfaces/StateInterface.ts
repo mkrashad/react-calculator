@@ -1,5 +1,6 @@
 export default interface StateInterface {
-  currentValue?: number;
-  prevValue?: number;
-  total?: number;
+  currentValue?: any;
+  prevValue?: any;
+  total?: any;
+  sign?: any
 }

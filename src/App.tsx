@@ -9,53 +9,89 @@ const App: React.FC<FunctionInterface> = () => {
   const [numbers, setNumber] = React.useState<StateInterface>({
     currentValue: 0,
     prevValue: 0,
-    total: 0
+    total: 0,
+    sign: ""
   });
 
   const handeleButton = e => {
-    let num1: number = numbers.currentValue;
-    let num2: number = e.target.innerHTML;
+    let current: number = numbers.currentValue;
+    let previous: number = numbers.prevValue;
+    let target: any = e.target.innerHTML;
     setNumber({
-      currentValue: num1 != 0 ? num1 + num2 : num2,
-      prevValue: num2,
-      total: 0
+      currentValue:
+        current === 0 ||
+        target === "+" ||
+        target === "-" ||
+        target === "*" ||
+        target === "/"
+          ? target
+          : current + target,
+      prevValue: numbers.currentValue,
+      total: previous,
+      sign:
+        target === "+" || target === "-" || target === "*" || target === "/"
+          ? target
+          : numbers.sign
     });
+  };
+
+  const arithmOperation = e => {
+    let target = e.target.innerHTML;
+    let sign = numbers.sign;
+    let total;
+    if ((target === "=" && sign === "+") || (target === "=" && sign === "-")) {
+      total = parseInt(numbers.currentValue) + parseInt(numbers.total);
+      setNumber({
+        currentValue: total,
+        prevValue: numbers.currentValue,
+        total: total,
+        sign: numbers.sign
+      });
+
+      console.log(total);
+    } else if (target === "=" && numbers.sign === "*") {
+      total =
+        parseInt(numbers.total) * parseInt(numbers.currentValue.substring(1));
+      setNumber({
+        currentValue: total,
+        prevValue: 0,
+        total: total,
+        sign: numbers.sign
+      });
+
+      console.log(total);
+    } else if (target === "=" && numbers.sign === "/") {
+      total =
+        parseInt(numbers.total) / parseInt(numbers.currentValue.substring(1));
+      setNumber({
+        currentValue: total,
+        prevValue: 0,
+        total: total,
+        sign: numbers.sign
+      });
+
+      console.log(total);
+    } else if (numbers.sign === ".") {
+      total = parseFloat(numbers.currentValue);
+      setNumber({
+        currentValue: numbers.currentValue,
+        prevValue: numbers.prevValue,
+        total: total,
+        sign: numbers.sign
+      });
+
+      console.log(numbers.currentValue);
+    }
   };
 
   const clearDisplay = () => {
     setNumber({
       currentValue: 0,
       prevValue: 0,
-      total: 0
+      total: 0,
+      sign: ""
     });
   };
-
-  // const arithmOperation = e => {
-  //   let arithmOp: number;
-  //   let floatValue: string;
-  //   if (e.target.innerHTML === "+") {
-  //     arithmOp = numbers + 21;
-  //     console.log(typeof arithmOp);
-  //   } else if (e.target.innerHTML === "-") {
-  //     arithmOp = numbers - 2;
-  //     setNumber(arithmOp);
-  //     console.log(typeof arithmOp);
-  //   } else if (e.target.innerHTML === "*") {
-  //     arithmOp = numbers * 2;
-  //     setNumber(arithmOp);
-  //     console.log(arithmOp);
-  //   } else if (e.target.innerHTML === "/") {
-  //     arithmOp = numbers / 2;
-  //     setNumber(arithmOp);
-  //     console.log(arithmOp);
-  //   } else if (e.target.innerHTML === ".") {
-  //     floatValue = `${numbers}.${2}`;
-
-  //     console.log(parseFloat(floatValue));
-  //   } else {
-  //     setNumber(0);
-  //   }
-  // };
 
   return (
     <div style={{ marginLeft: 500 }}>
@@ -63,11 +99,13 @@ const App: React.FC<FunctionInterface> = () => {
       <OperationItem
         handeleButton={handeleButton}
         clearDisplay={clearDisplay}
+        arithmOperation={arithmOperation}
       />
       <Display
         currentValue={numbers.currentValue}
         prevValue={numbers.prevValue}
         total={numbers.total}
+        sign={numbers.sign}
       />
     </div>
   );

@@ -1,10 +1,10 @@
 import * as React from "react";
 import FunctionInterface from "../Interfaces/FunctionInterface";
 
-const OperationItem: React.FC<FunctionInterface> = props => {
+const OperationItem: React.FC<FunctionInterface> = (props) => {
   return (
     <React.Fragment>
-      <button id="equals" onClick={props.handeleButton}>
+      <button id="equals" onClick={props.arithmOperation}>
         =
       </button>
       <button id="add" onClick={props.handeleButton}>
