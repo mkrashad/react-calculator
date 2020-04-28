@@ -7,19 +7,19 @@ const OperationItem: React.FC<FunctionInterface> = (props) => {
       <button id="equals" onClick={props.arithmOperation}>
         =
       </button>
-      <button id="add" onClick={props.handeleButton}>
+      <button id="add" onClick={props.arithmOperation}>
         +
       </button>
-      <button id="subtract" onClick={props.handeleButton}>
+      <button id="subtract" onClick={props.arithmOperation}>
         -
       </button>
-      <button id="multiply" onClick={props.handeleButton}>
+      <button id="multiply" onClick={props.arithmOperation}>
         *
       </button>
-      <button id="divide" onClick={props.handeleButton}>
+      <button id="divide" onClick={props.arithmOperation}>
         /
       </button>
-      <button id="decimal" onClick={props.handeleButton}>
+      <button id="decimal" onClick={props.arithmOperation}>
         .
       </button>
       <button id="clear" onClick={props.clearDisplay}>

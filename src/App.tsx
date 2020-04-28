@@ -14,74 +14,56 @@ const App: React.FC<FunctionInterface> = () => {
   });
 
   const handeleButton = e => {
+    let target: any = e.target.innerHTML;
     let current: number = numbers.currentValue;
     let previous: number = numbers.prevValue;
-    let target: any = e.target.innerHTML;
+
+
     setNumber({
-      currentValue:
-        current === 0 ||
-        target === "+" ||
-        target === "-" ||
-        target === "*" ||
-        target === "/"
-          ? target
-          : current + target,
-      prevValue: numbers.currentValue,
-      total: previous,
-      sign:
-        target === "+" || target === "-" || target === "*" || target === "/"
-          ? target
-          : numbers.sign
-    });
+      currentValue: current === 0
+        ? target
+        : current + target,
+      prevValue: numbers.prevValue,
+      sign: numbers.sign
+    })
+
+    // setNumber({
+    //   currentValue:
+    //     current === 0 ||
+    //       target === "+" ||
+    //       target === "-" ||
+    //       target === "*" ||
+    //       target === "/"
+    //       ? target
+    //       : current + target,
+    //   prevValue: numbers.currentValue,
+    //   total: previous,
+    //   sign:
+    //     target === "+" || target === "-" || target === "*" || target === "/"
+    //       ? target
+    //       : numbers.sign
+    // });
   };
 
   const arithmOperation = e => {
-    let target = e.target.innerHTML;
-    let sign = numbers.sign;
-    let total;
-    if ((target === "=" && sign === "+") || (target === "=" && sign === "-")) {
-      total = parseInt(numbers.currentValue) + parseInt(numbers.total);
+    let sign = e.target.innerHTML;
+      
+    if (e.target.innerHTML === "*" || e.target.innerHTML === "/" ) {
       setNumber({
-        currentValue: total,
+        currentValue: numbers.prevValue,
         prevValue: numbers.currentValue,
-        total: total,
-        sign: numbers.sign
-      });
-
-      console.log(total);
-    } else if (target === "=" && numbers.sign === "*") {
-      total =
-        parseInt(numbers.total) * parseInt(numbers.currentValue.substring(1));
-      setNumber({
-        currentValue: total,
-        prevValue: 0,
-        total: total,
-        sign: numbers.sign
-      });
-
-      console.log(total);
-    } else if (target === "=" && numbers.sign === "/") {
-      total =
-        parseInt(numbers.total) / parseInt(numbers.currentValue.substring(1));
-      setNumber({
-        currentValue: total,
-        prevValue: 0,
-        total: total,
-        sign: numbers.sign
-      });
-
-      console.log(total);
-    } else if (numbers.sign === ".") {
-      total = parseFloat(numbers.currentValue);
-      setNumber({
-        currentValue: numbers.currentValue,
-        prevValue: numbers.prevValue,
-        total: total,
-        sign: numbers.sign
-      });
-
-      console.log(numbers.currentValue);
+        sign: sign
+      })
     }
+
+    if (e.target.innerHTML === "=") {
+      setNumber({
+        total: numbers.sign === "*" ? parseInt(numbers.prevValue) * parseInt(numbers.currentValue) :
+        parseInt(numbers.prevValue) / parseInt(numbers.currentValue)
+      })
+ 
+    }
+
   };
 
   const clearDisplay = () => {
