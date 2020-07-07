@@ -6,65 +6,116 @@ import OperationItem from "./components/Operations";
 import Display from "./components/Display";
 
 const App: React.FC<FunctionInterface> = () => {
+
+  // Variaables
+
+  const isOperator = /[x/+‑]/,
+    isDigits = /[0-9]/,
+    endsWithOperator = /[x+‑/]$/,
+    endsWithNegativeSign = /[x/+]‑$/;
+
+
+
   const [numbers, setNumber] = React.useState<StateInterface>({
     currentValue: 0,
-    prevValue: 0,
-    total: 0,
-    sign: ""
+    // prevValue: 0,
+    sign: "",
+    total: 0
   });
 
-  const handeleButton = e => {
-    let target: any = e.target.innerHTML;
-    let current: number = numbers.currentValue;
-    let previous: number = numbers.prevValue;
+
+  const handeleNumbers = e => {
+    const current = numbers.currentValue, target = e.target.innerHTML,
+      number = isDigits.exec(current),
+      digits = isDigits.test(current);
 
 
     setNumber({
-      currentValue: current === 0
-        ? target
-        : current + target,
-      prevValue: numbers.prevValue,
-      sign: numbers.sign
-    })
+      currentValue:
+        current == 0
+          ? target
+          : current + target,
 
-    // setNumber({
-    //   currentValue:
-    //     current === 0 ||
-    //       target === "+" ||
-    //       target === "-" ||
-    //       target === "*" ||
-    //       target === "/"
-    //       ? target
-    //       : current + target,
-    //   prevValue: numbers.currentValue,
-    //   total: previous,
-    //   sign:
-    //     target === "+" || target === "-" || target === "*" || target === "/"
-    //       ? target
-    //       : numbers.sign
-    // });
-  };
+      total: 0
+    });
 
-  const arithmOperation = e => {
-    let sign = e.target.innerHTML;
-      
-    if (e.target.innerHTML === "*" || e.target.innerHTML === "/" ) {
-      setNumber({
-        currentValue: numbers.prevValue,
-        prevValue: numbers.currentValue,
-        sign: sign
-      })
+    if (digits) {
+      console.log("dfdfdf")
     }
 
-    if (e.target.innerHTML === "=") {
-      setNumber({
-        total: numbers.sign === "*" ? parseInt(numbers.prevValue) * parseInt(numbers.currentValue) :
-        parseInt(numbers.prevValue) / parseInt(numbers.currentValue)
-      })
- 
-    }
 
   };
+
+  const handeleOperation = e => {
+    const current = numbers.currentValue,
+      sign = isOperator.exec(current),
+      operator = isOperator.test(current);
+
+
+    // console.log(operator.input)
+
+    // if (operator) {
+    //   if (sign)
+    //     console.log(sign.input())
+    // }
+
+
+
+
+    // let target = e.target.innerHTML;
+    // let sign = numbers.sign;
+    // let total;
+    // if ((target === "+") || (sign === "-")) {
+    //   // total = parseInt(numbers.currentValue) + parseInt(numbers.total);
+    //   total = parseInt(numbers.currentValue)
+    //   setNumber({
+    //     currentValue: numbers.currentValue + target,
+    //     prevValue: numbers.currentValue,
+    //     total: 0,
+    //     sign: numbers.sign
+    //   });
+    // console.log(numbers.currentValue)
+  }
+  //   console.log(total);
+  // } else if (numbers.sign === "*") {
+  //   total =
+  //     parseInt(numbers.total) * parseInt(numbers.currentValue.substring(1));
+  //   setNumber({
+  //     currentValue: total,
+  //     prevValue: 0,
+  //     total: total,
+  //     sign: numbers.sign
+  //   });
+
+  //   console.log(total);
+  // } else if (numbers.sign === "/") {
+  //   total =
+  //     parseInt(numbers.total) / parseInt(numbers.currentValue.substring(1));
+  //   setNumber({
+  //     currentValue: total,
+  //     prevValue: 0,
+  //     total: total,
+  //     sign: numbers.sign
+  //   });
+
+  //   //3+5*6-2/4 {32.5, 11.5}
+  //   console.log(total);
+  // } else if (numbers.sign === ".") {
+  //   total = parseFloat(numbers.currentValue);
+  //   setNumber({
+  //     currentValue: numbers.currentValue,
+  //     prevValue: numbers.prevValue,
+  //     total: total,
+  //     sign: numbers.sign
+  //   });
+
+  //   console.log(numbers.currentValue);
+  // }
+  //   };
+
+  const handeleDeciamal = e => {
+
+  }
 
   const clearDisplay = () => {
     setNumber({
@@ -77,11 +128,11 @@ const App: React.FC<FunctionInterface> = () => {
 
   return (
     <div style={{ marginLeft: 500 }}>
-      <Buttons handeleButton={handeleButton} />
+      <Buttons handeleNumbers={handeleNumbers} />
       <OperationItem
-        handeleButton={handeleButton}
+        handeleNumbers={handeleNumbers}
         clearDisplay={clearDisplay}
-        arithmOperation={arithmOperation}
+        arithmOperation={handeleOperation}
       />
       <Display
         currentValue={numbers.currentValue}
