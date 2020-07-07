@@ -14,7 +14,7 @@ const OperationItem: React.FC<FunctionInterface> = (props) => {
         -
       </button>
       <button id="multiply" onClick={props.handeleOperation}>
-        x
+        *
       </button>
       <button id="divide" onClick={props.handeleOperation}>
         /

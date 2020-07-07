@@ -45,12 +45,12 @@ const App: React.FC<FunctionInterface> = () => {
     let target = e.target.innerHTML;
     let sign = numbers.sign;
     let total;
-    if ((target === "+") || (target === "-") || (target === "x") || (target === "/")) {
+    if ((target === "+") || (target === "-") || (target === "*") || (target === "/") || (target === ".")) {
       total = parseInt(numbers.currentValue) + parseInt(numbers.total);
       setNumber({
         currentValue: numbers.currentValue + target,
         prevValue: numbers.currentValue,
-        total: total,
+        // total: total,
         sign: sign
       });
       // console.log(target)
@@ -94,9 +94,17 @@ const App: React.FC<FunctionInterface> = () => {
   //   };
 
   const handeleEvaluate = e => {
-    let current = numbers.currentValue
-    let res = current.match(isOperator)
-    console.log(res[0])
+    // let current = numbers.currentValue
+    // let op = current.match(isOperator)
+    // let d = current.match(isDigits)
+    // if (op == "x" || op == "/") {
+    //   console.log("first")
+    // }
+    // else {
+    //   console.log("second")
+    // }
+    let b = eval(numbers.currentValue)
+    console.log(b)
   }
 
   const handeleDeciamal = e => {
