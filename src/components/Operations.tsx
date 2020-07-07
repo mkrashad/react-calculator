@@ -4,25 +4,25 @@ import FunctionInterface from "../Interfaces/FunctionInterface";
 const OperationItem: React.FC<FunctionInterface> = (props) => {
   return (
     <React.Fragment>
-      <button id="equals" onClick={props.arithmOperation}>
+      <button id="equals" onClick={props.handeleEvaluate}>
         =
       </button>
-      <button id="add" onClick={props.arithmOperation}>
+      <button id="add" onClick={props.handeleOperation}>
         +
       </button>
-      <button id="subtract" onClick={props.arithmOperation}>
+      <button id="subtract" onClick={props.handeleOperation}>
         -
       </button>
-      <button id="multiply" onClick={props.arithmOperation}>
+      <button id="multiply" onClick={props.handeleOperation}>
         *
       </button>
-      <button id="divide" onClick={props.arithmOperation}>
+      <button id="divide" onClick={props.handeleOperation}>
         /
       </button>
-      <button id="decimal" onClick={props.arithmOperation}>
+      <button id="decimal" onClick={props.handeleOperation}>
         .
       </button>
-      <button id="clear" onClick={props.clearDisplay}>
+      <button id="clear" onClick={props.handeleDisplay}>
         clear
       </button>
     </React.Fragment>

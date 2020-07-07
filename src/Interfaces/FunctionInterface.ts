@@ -1,6 +1,7 @@
 export default interface FunctionInterface {
-  arithmOperation?(e: any): void;
-  handeleButton?(e: any): void;
-  clearDisplay?(): void;
+  handeleOperation?(e: any): void;
+  handeleNumbers?(e: any): void;
+  handeleDisplay?(): void;
+  handeleEvaluate?(e: any): void;
   style?: any;
 }
