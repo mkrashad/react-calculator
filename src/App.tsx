@@ -19,7 +19,6 @@ const App: React.FC<FunctionInterface> = () => {
     currentValue: 0,
     prevValue: 0,
     sign: "",
-    total: 0
   });
 
 
@@ -35,7 +34,6 @@ const App: React.FC<FunctionInterface> = () => {
           ? target
           : current + target,
       prevValue: current,
-      total: 0
 
     });
 
@@ -44,41 +42,14 @@ const App: React.FC<FunctionInterface> = () => {
   const handeleOperation = e => {
     let target = e.target.innerHTML;
     let sign = numbers.sign;
-    let total;
     if ((target === "+") || (target === "-") || (target === "*") || (target === "/") || (target === ".")) {
-      total = parseInt(numbers.currentValue) + parseInt(numbers.total);
       setNumber({
         currentValue: numbers.currentValue + target,
         prevValue: numbers.currentValue,
-        // total: total,
         sign: sign
       });
-      // console.log(target)
     }
-    //   console.log(total);
-    // else if (numbers.sign === "*") {
-    //   total =
-    //     parseInt(numbers.total) * parseInt(numbers.currentValue.substring(1));
-    //   setNumber({
-    //     currentValue: total,
-    //     prevValue: 0,
-    //     total: total,
-    //     sign: numbers.sign
-    //   });
-
   }
-  //   console.log(total);
-  // } else if (numbers.sign === "/") {
-  //   total =
-  //     parseInt(numbers.total) / parseInt(numbers.currentValue.substring(1));
-  //   setNumber({
-  //     currentValue: total,
-  //     prevValue: 0,
-  //     total: total,
-  //     sign: numbers.sign
-  //   });
-
-  //   //3+5*6-2/4 {32.5, 11.5}
   //   console.log(total);
   // } else if (numbers.sign === ".") {
   //   total = parseFloat(numbers.currentValue);
@@ -93,18 +64,13 @@ const App: React.FC<FunctionInterface> = () => {
   // }
   //   };
 
-  const handeleEvaluate = e => {
-    // let current = numbers.currentValue
-    // let op = current.match(isOperator)
-    // let d = current.match(isDigits)
-    // if (op == "x" || op == "/") {
-    //   console.log("first")
-    // }
-    // else {
-    //   console.log("second")
-    // }
+  const handeleEvaluate = () => {
+
     let b = eval(numbers.currentValue)
-    console.log(b)
+    setNumber({
+      currentValue: b
+    })
+    //3+5*6-2/4 {32.5, 11.5}
   }
 
   const handeleDeciamal = e => {
@@ -115,7 +81,6 @@ const App: React.FC<FunctionInterface> = () => {
     setNumber({
       currentValue: 0,
       prevValue: 0,
-      total: 0,
       sign: ""
     });
   };
