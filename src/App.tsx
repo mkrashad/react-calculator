@@ -1,95 +1,72 @@
 import * as React from "react";
 import FunctionInterface from "./Interfaces/FunctionInterface";
 import StateInterface from "./Interfaces/StateInterface";
-import Buttons from "./components/Buttons";
+import Buttons from "./components/Numbers";
 import OperationItem from "./components/Operations";
 import Display from "./components/Display";
 
 const App: React.FC<FunctionInterface> = () => {
+
+  // Variaables
+  const isOperator = /[x/+‑]/g,
+    isDigits = /\d/g,
+    endsWithOperator = /[x+‑/]$/,
+    endsWithNegativeSign = /[x/+]‑$/;
+
+
+
   const [numbers, setNumber] = React.useState<StateInterface>({
     currentValue: 0,
-    // prevValue: 0,
+    prevValue: 0,
     sign: "",
     total: 0
   });
 
 
+  const handeleNumbers = e => {
+    const current = numbers.currentValue, target = e.target.innerHTML,
+      number = isDigits.exec(current),
+      digits = isDigits.test(current);
 
-  // const handeleButton = e => {
-  //   const patternNumbers = /\d/
-  //   const target = e.target.innerHTML
-  //   if (target.match(patternNumbers)) {
-  //     const digits: number = parseInt(target)
-  //     setNumber({
-  //       currentValue: digits,
-  //       prevValue: 0,
-  //       total: 0,
-  //       sign: ""
-  //     })
-  //   }
-  //   else
-  //     console.log("no")
 
-  //   // console.log(digits + " " + typeof digits)
-
-  // }
-
-  const handeleButton = e => {
-    const current = numbers.currentValue;
-    const previous: number = numbers.prevValue;
-    const target = e.target.innerHTML;
     setNumber({
       currentValue:
         current == 0
           ? target
           : current + target,
-      //   prevValue: numbers.currentValue,
-      sign:
-        target === "+" || target === "-" || target === "*" || target === "/"
-          ? target
-          : numbers.sign,
+      prevValue: current,
       total: 0
+
     });
-    // if (target.match(patternArithm)) {
-    //   console.log("eoeoeoe")
-    // }
+
   };
 
-  const arithmOperation = e => {
-    const patternNum = /\d/
-    // const patternArithm = /[-|+|*|/]/
-    // let current = numbers.currentValue
-    // let temp = current.exec(patternNum)
-    var str = numbers.currentValue;
-    var patt = /[-+|*|/]/;
-    var res = patt.exec(str);
-    console.log(res)
-
-    // let target = e.target.innerHTML;
-    // let sign = numbers.sign;
-    // let total;
-    // if ((target === "+") || (sign === "-")) {
-    //   // total = parseInt(numbers.currentValue) + parseInt(numbers.total);
-    //   total = parseInt(numbers.currentValue)
+  const handeleOperation = e => {
+    let target = e.target.innerHTML;
+    let sign = numbers.sign;
+    let total;
+    if ((target === "+") || (target === "-") || (target === "x") || (target === "/")) {
+      total = parseInt(numbers.currentValue) + parseInt(numbers.total);
+      setNumber({
+        currentValue: numbers.currentValue + target,
+        prevValue: numbers.currentValue,
+        total: total,
+        sign: sign
+      });
+      // console.log(target)
+    }
+    //   console.log(total);
+    // else if (numbers.sign === "*") {
+    //   total =
+    //     parseInt(numbers.total) * parseInt(numbers.currentValue.substring(1));
     //   setNumber({
-    //     currentValue: numbers.currentValue + target,
-    //     prevValue: numbers.currentValue,
-    //     total: 0,
+    //     currentValue: total,
+    //     prevValue: 0,
+    //     total: total,
     //     sign: numbers.sign
     //   });
-    // console.log(numbers.currentValue)
-  }
-  //   console.log(total);
-  // } else if (numbers.sign === "*") {
-  //   total =
-  //     parseInt(numbers.total) * parseInt(numbers.currentValue.substring(1));
-  //   setNumber({
-  //     currentValue: total,
-  //     prevValue: 0,
-  //     total: total,
-  //     sign: numbers.sign
-  //   });
 
+  }
   //   console.log(total);
   // } else if (numbers.sign === "/") {
   //   total =
@@ -116,7 +93,17 @@ const App: React.FC<FunctionInterface> = () => {
   // }
   //   };
 
-  const clearDisplay = () => {
+  const handeleEvaluate = e => {
+    let current = numbers.currentValue
+    let res = current.match(isOperator)
+    console.log(res[0])
+  }
+
+  const handeleDeciamal = e => {
+
+  }
+
+  const handeleDisplay = () => {
     setNumber({
       currentValue: 0,
       prevValue: 0,
@@ -127,11 +114,12 @@ const App: React.FC<FunctionInterface> = () => {
 
   return (
     <div style={{ marginLeft: 500 }}>
-      <Buttons handeleButton={handeleButton} />
+      <Buttons handeleNumbers={handeleNumbers} />
       <OperationItem
-        handeleButton={handeleButton}
-        clearDisplay={clearDisplay}
-        arithmOperation={arithmOperation}
+        handeleNumbers={handeleNumbers}
+        handeleDisplay={handeleDisplay}
+        handeleOperation={handeleOperation}
+        handeleEvaluate={handeleEvaluate}
       />
       <Display
         currentValue={numbers.currentValue}
