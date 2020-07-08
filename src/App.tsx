@@ -1,12 +1,13 @@
 import * as React from "react";
 import FunctionInterface from "./Interfaces/FunctionInterface";
 import StateInterface from "./Interfaces/StateInterface";
-import Buttons from "./components/Numbers";
-import OperationItem from "./components/Operations";
+import Numbers from "./components/Numbers";
+import Operators from "./components/Operators";
 import Display from "./components/Display";
 
 const App: React.FC<FunctionInterface> = () => {
 
+<<<<<<< HEAD
   // Variaables
 <<<<<<< HEAD
 
@@ -16,12 +17,17 @@ const App: React.FC<FunctionInterface> = () => {
   const isOperator = /[x/+‑]/g,
     isDigits = /\d/g,
 >>>>>>> regExp
+=======
+  // Variables
+  const isOperator = /[*/+‑]/,
+>>>>>>> regExp
     endsWithOperator = /[x+‑/]$/,
     endsWithNegativeSign = /[x/+]‑$/;
 
 
-
+  // Initial States
   const [numbers, setNumber] = React.useState<StateInterface>({
+<<<<<<< HEAD
     currentValue: 0,
 <<<<<<< HEAD
     // prevValue: 0,
@@ -29,22 +35,33 @@ const App: React.FC<FunctionInterface> = () => {
     total: 0
 =======
     prevValue: 0,
+=======
+    currentValue: "0",
+    prevValue: "0",
+    formula: "",
+>>>>>>> regExp
     sign: "",
 >>>>>>> regExp
   });
 
 
-  const handeleNumbers = e => {
-    const current = numbers.currentValue, target = e.target.innerHTML,
-      number = isDigits.exec(current),
-      digits = isDigits.test(current);
+  const maxDigitWarning = () => {
+    setNumber({
+      currentValue: "Digit Limit Met",
+      prevValue: numbers.currentValue
+    });
+    setTimeout(() => setNumber({ currentValue: numbers.prevValue }), 1000);
+  }
 
-
+  // Numbers
+  const handleNumbers = e => {
+    const current = numbers.currentValue, target = e.target.innerHTML
     setNumber({
       currentValue:
-        current == 0
+        current === "0"
           ? target
           : current + target,
+<<<<<<< HEAD
 <<<<<<< HEAD
 
       total: 0
@@ -132,59 +149,101 @@ const App: React.FC<FunctionInterface> = () => {
 =======
       prevValue: current,
 
+=======
+      prevValue: current === "0"
+        ? target
+        : current + target,
+      sign: ""
+>>>>>>> regExp
     });
 
   };
 
-  const handeleOperation = e => {
+  // Operations
+  const handleOperators = e => {
     let target = e.target.innerHTML;
     let sign = numbers.sign;
-    if ((target === "+") || (target === "-") || (target === "*") || (target === "/") || (target === ".")) {
+    if ((target === "+") || (target === "-") || (target === "x") || (target === "/") || (target === ".")) {
       setNumber({
         currentValue: numbers.currentValue + target,
-        prevValue: numbers.currentValue,
+        prevValue: numbers.currentValue + target,
         sign: sign
       });
     }
   }
-  //   console.log(total);
-  // } else if (numbers.sign === ".") {
-  //   total = parseFloat(numbers.currentValue);
-  //   setNumber({
-  //     currentValue: numbers.currentValue,
-  //     prevValue: numbers.prevValue,
-  //     total: total,
-  //     sign: numbers.sign
-  //   });
 
-  //   console.log(numbers.currentValue);
-  // }
-  //   };
 
-  const handeleEvaluate = () => {
-
-    let b = eval(numbers.currentValue)
-    setNumber({
-      currentValue: b
-    })
-    //3+5*6-2/4 {32.5, 11.5}
+  // Decimal
+  const handleDecimal = e => {
+    const decimal = e.target.innerHTML
+    if (!numbers.currentValue.includes(".")) {
+      setNumber({
+        currentValue: numbers.currentValue.match(/(-?\d+\.?\d*)$/)[0] + ".",
+        prevValue: numbers.currentValue
+      })
+      console.log("yes")
+    }
   }
 
-  const handeleDeciamal = e => {
 
+  // Evaluate
+  const handleEvaluate = () => {
+    // let expression
+    // if (numbers.currentValue.length > 21) {
+    //   maxDigitWarning()
+
+    // }
+    // else {
+    //   while (endsWithOperator.test(numbers.currentValue)) {
+    //     expression = numbers.currentValue.slice(0, -1);
+    //   }
+    //   //   const mutiply = numbers.currentValue.replace(/x/g, "*")
+    //   //   const result = eval(mutiply)
+    //   //   setNumber({
+    //   //     currentValue: result
+    //   //   })
+    //   // }
+    //   const result = eval(expression)
+    //   setNumber({
+    //     currentValue: result
+    //   })
+
+    // }
+    if (!numbers.currentValue.includes("Limit")) {
+      let expression = numbers.currentValue;
+      while (endsWithOperator.test(expression)) {
+        expression = expression.slice(0, -1);
+      }
+      expression = expression.replace(/x/g, "*").replace(/‑/g, "-");
+      let answer = eval(numbers.currentValue.replace(/x/g, "*"))
+      setNumber({
+        currentValue: answer,
+        prevValue:
+          expression.replace(/\*/g, "⋅").replace(/-/g, "‑") + "=" + answer,
+        // prevValue: answer,
+        // evaluated: true
+      });
+    }
+    console.log(eval("5 * - + 5"))
   }
 
+<<<<<<< HEAD
   const handeleDisplay = () => {
 >>>>>>> regExp
+=======
+  // Clear Display
+  const handleDisplay = () => {
+>>>>>>> regExp
     setNumber({
-      currentValue: 0,
-      prevValue: 0,
+      currentValue: "0",
+      prevValue: "0",
       sign: ""
     });
   };
 
   return (
     <div style={{ marginLeft: 500 }}>
+<<<<<<< HEAD
       <Buttons handeleNumbers={handeleNumbers} />
       <OperationItem
         handeleNumbers={handeleNumbers}
@@ -196,11 +255,19 @@ const App: React.FC<FunctionInterface> = () => {
         handeleOperation={handeleOperation}
         handeleEvaluate={handeleEvaluate}
 >>>>>>> regExp
+=======
+      <Numbers handleNumbers={handleNumbers} />
+      <Operators
+        handleDecimal={handleDecimal}
+        handleDisplay={handleDisplay}
+        handleOperators={handleOperators}
+        handleEvaluate={handleEvaluate}
+
+>>>>>>> regExp
       />
       <Display
         currentValue={numbers.currentValue}
         prevValue={numbers.prevValue}
-        total={numbers.total}
         sign={numbers.sign}
       />
     </div>

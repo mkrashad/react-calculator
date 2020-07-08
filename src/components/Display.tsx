@@ -7,7 +7,6 @@ const Display: React.FC<StateInterface> = props => {
       <div>PrevValue: {props.prevValue}</div>
       <div id="display">{props.currentValue}</div>
       <div>Sign: {props.sign}</div>
-      <div>Total: {props.total}</div>
     </React.Fragment>
   );
 };

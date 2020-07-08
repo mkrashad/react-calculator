@@ -1,7 +1,8 @@
 export default interface FunctionInterface {
-  handeleOperation?(e: any): void;
-  handeleNumbers?(e: any): void;
-  handeleDisplay?(): void;
-  handeleEvaluate?(e: any): void;
+  handleOperators?(e: any): void;
+  handleNumbers?(e: any): void;
+  handleDecimal?(e: any): void;
+  handleDisplay?(): void;
+  handleEvaluate?(e: any): void;
   style?: any;
 }

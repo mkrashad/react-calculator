@@ -304,4 +304,8 @@ class Formula extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 ReactDOM.render(<Calculator />, document.getElementById("app"));
+=======
+ReactDOM.render(<Calculator />, document.getElementById("app"));
+>>>>>>> regExp
