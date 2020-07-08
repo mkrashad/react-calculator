@@ -1,6 +1,8 @@
 export default interface FunctionInterface {
-  arithmOperation?(e: any): void;
-  handeleButton?(e: any): void;
-  clearDisplay?(): void;
+  handleOperators?(e: any): void;
+  handleNumbers?(e: any): void;
+  handleDecimal?(e: any): void;
+  handleDisplay?(): void;
+  handleEvaluate?(e: any): void;
   style?: any;
 }
