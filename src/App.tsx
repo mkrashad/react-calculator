@@ -8,118 +8,71 @@ import Display from "./components/Display";
 const App: React.FC<FunctionInterface> = () => {
 
   // Variables
-  const isOperator = /[*/+‑]/,
+  const isOperator = /[*/+‑]/g,
     endsWithOperator = /[x+‑/]$/,
     endsWithNegativeSign = /[x/+]‑$/;
 
-
   // Initial States
-  const [numbers, setNumber] = React.useState<StateInterface>({
+  const [state, setState] = React.useState<StateInterface>({
     currentValue: "0",
     prevValue: "0",
-    formula: "",
-    sign: "",
   });
 
 
-  const maxDigitWarning = () => {
-    setNumber({
-      currentValue: "Digit Limit Met",
-      prevValue: numbers.currentValue
-    });
-    setTimeout(() => setNumber({ currentValue: numbers.prevValue }), 1000);
-  }
-
   // Numbers
   const handleNumbers = e => {
-    const current = numbers.currentValue, target = e.target.innerHTML
-    setNumber({
+    const current = state.currentValue, value = e.target.value
+    setState({
       currentValue:
         current === "0"
-          ? target
-          : current + target,
+          ? value
+          : current + value,
       prevValue: current === "0"
-        ? target
-        : current + target,
-      sign: ""
+        ? value
+        : current + value,
     });
-
   };
+
 
   // Operations
   const handleOperators = e => {
-    let target = e.target.innerHTML;
-    let sign = numbers.sign;
-    if ((target === "+") || (target === "-") || (target === "x") || (target === "/") || (target === ".")) {
-      setNumber({
-        currentValue: numbers.currentValue + target,
-        prevValue: numbers.currentValue + target,
-        sign: sign
-      });
-    }
+    let value = e.target.value;
+    setState({
+      currentValue: state.currentValue + value,
+      prevValue: state.currentValue + value,
+    });
+
   }
 
-
   // Decimal
-  const handleDecimal = e => {
-    const decimal = e.target.innerHTML
-    if (!numbers.currentValue.includes(".")) {
-      setNumber({
-        currentValue: numbers.currentValue.match(/(-?\d+\.?\d*)$/)[0] + ".",
-        prevValue: numbers.currentValue
+  const handleDecimal = () => {
+    let checkForForbiddenDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
+    if (!checkForForbiddenDecimals.test(state.currentValue)) {
+      setState({
+        currentValue: state.currentValue + ".",
+        prevValue: state.currentValue
       })
-      console.log("yes")
     }
   }
 
 
   // Evaluate
   const handleEvaluate = () => {
-    // let expression
-    // if (numbers.currentValue.length > 21) {
-    //   maxDigitWarning()
-
-    // }
-    // else {
-    //   while (endsWithOperator.test(numbers.currentValue)) {
-    //     expression = numbers.currentValue.slice(0, -1);
-    //   }
-    //   //   const mutiply = numbers.currentValue.replace(/x/g, "*")
-    //   //   const result = eval(mutiply)
-    //   //   setNumber({
-    //   //     currentValue: result
-    //   //   })
-    //   // }
-    //   const result = eval(expression)
-    //   setNumber({
-    //     currentValue: result
-    //   })
-
-    // }
-    if (!numbers.currentValue.includes("Limit")) {
-      let expression = numbers.currentValue;
-      while (endsWithOperator.test(expression)) {
-        expression = expression.slice(0, -1);
-      }
-      expression = expression.replace(/x/g, "*").replace(/‑/g, "-");
-      let answer = eval(numbers.currentValue.replace(/x/g, "*"))
-      setNumber({
-        currentValue: answer,
-        prevValue:
-          expression.replace(/\*/g, "⋅").replace(/-/g, "‑") + "=" + answer,
-        // prevValue: answer,
-        // evaluated: true
-      });
-    }
-    console.log(eval("5 * - + 5"))
+    let expression = state.currentValue;
+    expression = expression.replace(/x/g, "*").replace(/÷/g, "/");
+    let answer = eval(expression)
+    setState({
+      currentValue: answer,
+      prevValue: expression.replace(/\*/g, "x").replace(/\//g, "÷") + "=" + answer
+    });
   }
 
   // Clear Display
   const handleDisplay = () => {
-    setNumber({
+    setState({
       currentValue: "0",
       prevValue: "0",
-      sign: ""
+      evaluated: false
     });
   };
 
@@ -134,9 +87,9 @@ const App: React.FC<FunctionInterface> = () => {
 
       />
       <Display
-        currentValue={numbers.currentValue}
-        prevValue={numbers.prevValue}
-        sign={numbers.sign}
+        total={state.total}
+        currentValue={state.currentValue}
+        prevValue={state.prevValue}
       />
     </div>
   );
