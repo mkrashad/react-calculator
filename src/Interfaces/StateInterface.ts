@@ -1,6 +1,4 @@
 export default interface StateInterface {
-  currentValue?: string;
+  currentValue?: any;
   prevValue?: string;
-  total?: string;
-  evaluated?: boolean;
 }

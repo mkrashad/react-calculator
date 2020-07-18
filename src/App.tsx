@@ -7,11 +7,6 @@ import Display from "./components/Display";
 
 const App: React.FC<FunctionInterface> = () => {
 
-  // Variables
-  const isOperator = /[*/+‑]/g,
-    endsWithOperator = /[x+‑/]$/,
-    endsWithNegativeSign = /[x/+]‑$/;
-
   // Initial States
   const [state, setState] = React.useState<StateInterface>({
     currentValue: "0",
@@ -27,26 +22,42 @@ const App: React.FC<FunctionInterface> = () => {
         current === "0"
           ? value
           : current + value,
-      prevValue: current === "0"
-        ? value
-        : current + value,
+      prevValue: value
     });
   };
 
 
   // Operations
   const handleOperators = e => {
-    let value = e.target.value;
+    const value = e.target.value;
+    const checkForExistingOperators = /[*\/+-]{2,}/;
+    let calculation;
     setState({
+      prevValue: state.currentValue,
       currentValue: state.currentValue + value,
-      prevValue: state.currentValue + value,
     });
+    const checkForRepeatedOperators = new RegExp('\\' + value);
+    if (checkForRepeatedOperators.test(state.currentValue)) {
+      setState({
+        currentValue: state.prevValue + e.target.value,
+      });
+
+      console.log("Repeated " + calculation + " " + e.target.value)
+    }
+
+    if (checkForExistingOperators.test(state.currentValue)) {
+      calculation = state.currentValue.replace(checkForExistingOperators, '');
+      setState({
+        currentValue: calculation + e.target.value,
+      });
+      console.log("exist" + calculation)
+    }
 
   }
 
   // Decimal
   const handleDecimal = () => {
-    let checkForForbiddenDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
+    const checkForForbiddenDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
     if (!checkForForbiddenDecimals.test(state.currentValue)) {
       setState({
         currentValue: state.currentValue + ".",
@@ -60,7 +71,7 @@ const App: React.FC<FunctionInterface> = () => {
   const handleEvaluate = () => {
     let expression = state.currentValue;
     expression = expression.replace(/x/g, "*").replace(/÷/g, "/");
-    let answer = eval(expression)
+    const answer = eval(expression)
     setState({
       currentValue: answer,
       prevValue: expression.replace(/\*/g, "x").replace(/\//g, "÷") + "=" + answer
@@ -71,8 +82,7 @@ const App: React.FC<FunctionInterface> = () => {
   const handleDisplay = () => {
     setState({
       currentValue: "0",
-      prevValue: "0",
-      evaluated: false
+      prevValue: "0"
     });
   };
 
@@ -87,7 +97,6 @@ const App: React.FC<FunctionInterface> = () => {
 
       />
       <Display
-        total={state.total}
         currentValue={state.currentValue}
         prevValue={state.prevValue}
       />
