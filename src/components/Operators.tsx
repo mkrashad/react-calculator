@@ -13,11 +13,11 @@ const OperationItem: React.FC<FunctionInterface> = (props) => {
       <button id="subtract" onClick={props.handleOperators} value="-">
         -
       </button>
-      <button id="multiply" onClick={props.handleOperators} value="*">
+      <button id="multiply" onClick={props.handleOperators} value="x">
         x
       </button>
-      <button id="divide" onClick={props.handleOperators} value="/">
-      ÷
+      <button id="divide" onClick={props.handleOperators} value="÷">
+        ÷
       </button>
       <button id="decimal" onClick={props.handleDecimal} value=".">
         .

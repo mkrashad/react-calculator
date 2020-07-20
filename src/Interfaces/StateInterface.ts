@@ -1,4 +1,5 @@
 export default interface StateInterface {
-  currentValue?: any;
+  currentValue?: string;
   prevValue?: string;
+  formula?: string
 }

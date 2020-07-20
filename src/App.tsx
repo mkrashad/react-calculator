@@ -11,6 +11,8 @@ const App: React.FC<FunctionInterface> = () => {
   const [state, setState] = React.useState<StateInterface>({
     currentValue: "0",
     prevValue: "0",
+    formula: "",
+
   });
 
 
@@ -22,43 +24,49 @@ const App: React.FC<FunctionInterface> = () => {
         current === "0"
           ? value
           : current + value,
-      prevValue: value
+      prevValue: current === "0"
+        ? value
+        : current + value,
+      formula: value,
+
     });
   };
-
 
   // Operations
   const handleOperators = e => {
     const value = e.target.value;
-    const checkForExistingOperators = /[*\/+-]{2,}/;
+    const repeatedOperators = /[x÷+-]{2,}/;
     let calculation;
     setState({
-      prevValue: state.currentValue,
       currentValue: state.currentValue + value,
+      prevValue: state.currentValue,
+      formula: state.currentValue,
+
     });
-    const checkForRepeatedOperators = new RegExp('\\' + value);
-    if (checkForRepeatedOperators.test(state.currentValue)) {
+    // Checking repeated operators in currentValue
+    const reg = new RegExp('\\' + value);
+    if (reg.test(state.currentValue)) {
       setState({
-        currentValue: state.prevValue + e.target.value,
+        currentValue: state.formula + value,
+        prevValue: state.currentValue,
+
       });
-
-      console.log("Repeated " + calculation + " " + e.target.value)
     }
-
-    if (checkForExistingOperators.test(state.currentValue)) {
-      calculation = state.currentValue.replace(checkForExistingOperators, '');
+    // Checking operators in currentValue
+    if (repeatedOperators.test(state.currentValue)) {
+      calculation = state.currentValue.replace(repeatedOperators, '');
       setState({
-        currentValue: calculation + e.target.value,
+        currentValue: calculation + value,
+        prevValue: state.currentValue,
       });
-      console.log("exist" + calculation)
+      console.log(state.currentValue)
     }
-
   }
 
   // Decimal
   const handleDecimal = () => {
-    const checkForForbiddenDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
-    if (!checkForForbiddenDecimals.test(state.currentValue)) {
+    const repeatedDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
+    if (!repeatedDecimals.test(state.currentValue)) {
       setState({
         currentValue: state.currentValue + ".",
         prevValue: state.currentValue
