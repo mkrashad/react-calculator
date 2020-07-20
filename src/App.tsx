@@ -59,7 +59,6 @@ const App: React.FC<FunctionInterface> = () => {
         currentValue: calculation + value,
         prevValue: state.currentValue,
       });
-      console.log(state.currentValue)
     }
   }
 
