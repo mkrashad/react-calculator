@@ -1,6 +1,6 @@
 import * as React from "react";
-import FunctionInterface from "./Interfaces/FunctionInterface";
-import StateInterface from "./Interfaces/StateInterface";
+import FunctionInterface from "./model/FunctionInterface";
+import StateInterface from "./model/StateModel";
 import Numbers from "./components/Numbers";
 import Operators from "./components/Operators";
 import Display from "./components/Display";

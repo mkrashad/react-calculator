@@ -1,5 +1,5 @@
 import * as React from "react";
-import StateInterface from "../Interfaces/StateInterface";
+import StateInterface from "../model/StateModel";
 
 const Display: React.FC<StateInterface> = props => {
   return (

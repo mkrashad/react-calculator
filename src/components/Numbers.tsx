@@ -1,5 +1,5 @@
 import * as React from "react";
-import FunctionInterface from "../Interfaces/FunctionInterface";
+import FunctionInterface from "../model/FunctionInterface";
 
 const Buttons: React.FC<FunctionInterface> = ({ handleNumbers }) => {
   return (
