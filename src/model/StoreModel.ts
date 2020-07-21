@@ -1,14 +1,14 @@
 import audit, { AuditModel } from "./AuditModel"
-import state, { StateModel } from "./StateModel";
+import buttons, { ButtonsModel } from "./StateModel";
 
 export interface StoreModel {
-  state: StateModel;
   audit: AuditModel;
+  buttons: ButtonsModel;
 }
 
 const storeModel: StoreModel = {
   audit,
-  state
+  buttons
 }
 
 
