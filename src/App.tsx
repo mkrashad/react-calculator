@@ -7,87 +7,47 @@ import Display from "./components/Display";
 
 const App: React.FC = () => {
 
+  const [state, setSate] = useState('');
   const buttons = useStoreState(state => state.buttons);
-  // // Initial States
-  // const [state, setState] = React.useState<state>({
-  //   currentValue: "0",
-  //   prevValue: "0",
-  //   formula: "",
-  // });
+  const numbers = useStoreActions(actions => actions.buttons.numbers);
+  const operators = useStoreActions(actions => actions.buttons.operators);
+  const decimal = useStoreActions(actions => actions.buttons.decimal);
+  const evaluate = useStoreActions(actions => actions.buttons.evaluate);
+  const clear = useStoreActions(actions => actions.buttons.clear);
 
-
-
-  const handle = useStoreActions(actions => actions.buttons.handle);
-
-  const [text, setText] = useState('');
-
-
-  const handleNumbers = useCallback(() => {
-    handle(text); 
-    setText('');
-  }, [handle, setText, text]);
+  // Numbers
+  const handleNumbers = useCallback((e) => {
+    const value = e.target.value
+    numbers(value);
+    setSate(value);
+  }, [numbers, setSate]);
 
   // Operations
-  const handleOperators = e => {
-    // const value = e.target.value;
-    // const repeatedOperators = /[x÷+-]{2,}/;
-    // let calculation;
-    // setState({
-    //   currentValue: state.currentValue + value,
-    //   prevValue: state.currentValue,
-    //   formula: state.currentValue,
+  const handleOperators = useCallback((e) => {
+    const value = e.target.value
+    operators(value);
+    setSate(value);
+  }, [operators, setSate]);
 
-    // });
-    // // Checking repeated operators in currentValue
-    // const reg = new RegExp('\\' + value);
-    // if (reg.test(state.currentValue)) {
-    //   setState({
-    //     currentValue: state.formula + value,
-    //     prevValue: state.currentValue,
-
-    //   });
-    // }
-    // // Checking operators in currentValue
-    // if (repeatedOperators.test(state.currentValue)) {
-    //   calculation = state.currentValue.replace(repeatedOperators, '');
-    //   setState({
-    //     currentValue: calculation + value,
-    //     prevValue: state.currentValue,
-    //   });
-    //   console.log(state.currentValue)
-    // }
-  }
 
   // Decimal
-  const handleDecimal = () => {
-    // const repeatedDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
-    // if (!repeatedDecimals.test(state.currentValue)) {
-    //   setState({
-    //     currentValue: state.currentValue + ".",
-    //     prevValue: state.currentValue
-    //   })
-    // }
-  }
+  const handleClear = useCallback(() => {
+    decimal("");
+    setSate("");
+  }, [decimal, setSate]);
 
 
   // Evaluate
-  const handleEvaluate = () => {
-    // let expression = state.currentValue;
-    // expression = expression.replace(/x/g, "*").replace(/÷/g, "/");
-    // const answer = eval(expression)
-    // setState({
-    //   currentValue: answer,
-    //   prevValue: expression.replace(/\*/g, "x").replace(/\//g, "÷") + "=" + answer
-    // });
-  }
+  const handleEvaluate = useCallback(() => {
+    evaluate("");
+    setSate("");
+  }, [evaluate, setSate]);
 
   // Clear Display
-  const handleDisplay = () => {
-  //   setState({
-  //     currentValue: "0",
-  //     prevValue: "0"
-  //   });
-  };
+  const handleDisplay = useCallback(() => {
+    clear("");
+    setSate("");
+  }, [clear, setSate]);
 
 
 
@@ -95,7 +55,7 @@ const App: React.FC = () => {
     <div style={{ marginLeft: 500 }}>
       <Numbers handleNumbers={handleNumbers} />
       <Operators
-        handleDecimal={handleDecimal}
+        handleDecimal={handleClear}
         handleDisplay={handleDisplay}
         handleOperators={handleOperators}
         handleEvaluate={handleEvaluate}
