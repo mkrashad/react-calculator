@@ -11,45 +11,51 @@ export interface ButtonsModel {
   clear: Action<ButtonsModel, string>;
 }
 
-const buttons: ButtonsModel = {
+const buttonsModel: ButtonsModel = {
   currentValue: "0",
   prevValue: "0",
   formula: "",
 
   // Actions 
-  numbers: action((state, value) => {
-    if (state.currentValue === "0") {
-      state.currentValue = value
+  numbers: action((state, payload) => {
+    const current = state.currentValue
+    if (current === "0") {
+      state.currentValue = payload
+      state.prevValue = payload
     } else {
-      state.currentValue = state.currentValue + value
+      state.currentValue = current + payload
+      state.prevValue = current + payload
     }
-    if (state.prevValue === "0") {
-      state.prevValue = value
-    } else {
-      state.prevValue = state.prevValue + value
-    }
-    state.formula = value
+    state.formula = payload
+    // console.log(value)
   }),
 
   operators: action((state, value) => {
-    const repeatedOperators = /[x÷+-]{2,}/
+    const repeatedOperators = /[x÷+-]{3,}/
     let calculation
     state.currentValue = state.currentValue + value
     state.prevValue = state.currentValue
     state.formula = state.currentValue
+
     // Checking repeated operators in currentValue
     const reg = new RegExp('\\' + value)
     if (reg.test(state.currentValue)) {
-      state.currentValue = state.formula + value
-      state.prevValue = state.currentValue
+      state.currentValue = state.currentValue.replace(/\++/g, '+')
+        .replace(/\--/g, '-')
+        .replace(/\xx/g, 'x')
+        .replace(/\÷÷/g, '÷'),
+        state.prevValue = state.currentValue
+      console.log(reg)
     }
     // Checking operators in currentValue
     if (repeatedOperators.test(state.currentValue)) {
       calculation = state.currentValue.replace(repeatedOperators, '');
       state.currentValue = calculation + value
-      state.prevValue = state.currentValue
+      // state.prevValue = state.currentValue
+      console.log(calculation, value)
     }
   }),
+
 
   decimal: action((state) => {
     const repeatedDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
@@ -73,4 +79,4 @@ const buttons: ButtonsModel = {
   }),
 };
 
-export default buttons;
+export default buttonsModel;

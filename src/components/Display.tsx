@@ -1,11 +1,12 @@
 import * as React from "react";
-import StateInterface from "../model/StateModel";
+import { useStoreState } from '../hooks';
 
-const Display: React.FC<StateInterface> = props => {
+const Display: React.FC = () => {
+  const buttons = useStoreState(state => state.buttons);
   return (
     <React.Fragment>
-      <div>PrevValue: {props.prevValue}</div>
-      <div id="display">{props.currentValue}</div>
+      <div>PrevValue: {buttons.prevValue}</div>
+      <div id="display">{buttons.currentValue}</div>
     </React.Fragment>
   );
 };

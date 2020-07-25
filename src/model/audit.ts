@@ -2,8 +2,8 @@ export interface AuditModel {
   logs: string[];
 }
 
-const audit: AuditModel = {
+const auditModel: AuditModel = {
   logs: []
 };
 
-export default audit;
+export default auditModel;

@@ -1,7 +1,17 @@
 import * as React from "react";
-import FunctionInterface from "../model/FunctionInterface";
+import { useCallback } from 'react';
+import { useStoreActions } from '../hooks';
 
-const Buttons: React.FC<FunctionInterface> = ({ handleNumbers }) => {
+const Numbers: React.FC = () => {
+  const numbers = useStoreActions(actions => actions.buttons.numbers);
+
+  // Numbers
+  const handleNumbers = useCallback((e) => {
+    const value = e.target.value
+    numbers(value);
+  }, [numbers]);
+  
+
   return (
     <React.Fragment>
       <button id="zero" onClick={handleNumbers} value="0">
@@ -38,4 +48,4 @@ const Buttons: React.FC<FunctionInterface> = ({ handleNumbers }) => {
   );
 };
 
-export default Buttons;
+export default Numbers;
