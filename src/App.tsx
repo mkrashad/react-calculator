@@ -12,7 +12,6 @@ const App: React.FC<FunctionInterface> = () => {
     currentValue: "0",
     prevValue: "0",
     formula: "",
-
   });
 
 
@@ -28,8 +27,8 @@ const App: React.FC<FunctionInterface> = () => {
         ? value
         : current + value,
       formula: value,
-
     });
+    // console.log(value)
   };
 
   // Operations
@@ -41,18 +40,21 @@ const App: React.FC<FunctionInterface> = () => {
       currentValue: state.currentValue + value,
       prevValue: state.currentValue,
       formula: state.currentValue,
-
     });
+
     // Checking repeated operators in currentValue
     const reg = new RegExp('\\' + value);
     if (reg.test(state.currentValue)) {
       setState({
-        currentValue: state.formula + value,
+        currentValue: state.currentValue.replace(/\++/g, '+')
+          .replace(/\--/g, '-')
+          .replace(/\xx/g, 'x')
+          .replace(/\÷÷/g, '÷'),
         prevValue: state.currentValue,
-
       });
+      console.log(state.currentValue)
     }
-    // Checking operators in currentValue
+    // // Checking operators in currentValue
     if (repeatedOperators.test(state.currentValue)) {
       calculation = state.currentValue.replace(repeatedOperators, '');
       setState({
