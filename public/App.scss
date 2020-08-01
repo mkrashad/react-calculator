@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;1,300;1,900&display=swap');
+
+$button-font-size: 1.2em;
+$button-font-family: 'Montserrat', sans-serif;
 $base-color: #fdfdfd;
 $buttons-color: #F6F3FF;
 
@@ -6,19 +10,22 @@ body{
 }
 
 .wrapper{
-  height: 26em;
+  // font-family:  $font;
   margin: 10% auto;
-  width: 20%;
-  border-radius: 10px;
-  background-color: $base-color;
+  height: 26em;
   padding-top:  1%;
+  width: 21%;
+  // border-radius: 10px;
+  background-color: $base-color;
   box-shadow: 2px 2px 2px 2px #6d346d;
-  border: 1px solid red;
+  border-radius: 10px;
+  // border: 1px solid red;
+  
 }
 
 
 .display-main{
-  height: 22%;
+  height: 25%;
   background-color: $base-color;
   text-align: right;
   padding-right: 1%;
@@ -30,103 +37,82 @@ body{
   }
 }
 
-
 .grid-container{
-  height: 80%;
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 75% 25%;
+  // border: 1px solid red;
 }
 
 
-.item1 {
-  border: 1px solid red;
+.column-delete-numbers {
+  // height: 3em;
+  // border: 1px solid red;
+  // background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
+  background-color:transparent; 
 }
 
 
-.item2 {
-  border: 1px solid red;
-}
-
-.grid-operators{
+.delete-item{
+  display: grid;
   background-color: #f2e0fa;
-  display: grid;
   grid-gap: none;
-  grid-template-columns: 33% 33% 33%;
-  border: 1px solid red;
+  grid-template-columns: 33.33% 33.33% 33.33%;
   button{
-    font-size: 1.5em;
-    box-shadow: 1px 1px 1px 1px #E0D9EC;
+    border: 1px solid #d1cfcf;
+    // box-shadow: 0px 0px 0px 1px #E0D9EC;
+    height: 4.6em;
     background-color:transparent; 
-    padding: 14%;
-    border: none;
+    // padding: 20%;
+    // border: none;
     text-align: center;
   }
 }
 
 
-.grid-numbers {
-  background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
+.numbers-item {
   display: grid;
+  border-bottom-right-radius: 10px;
   grid-gap: none;
-  grid-template-columns: 33% 33% 33%;
-  border: 1px solid red;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  // border: 1px solid red;
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
   button{
-    font-size: 1.5em;
-    box-shadow: 1px 1px 1px 1px #E0D9EC;
+    box-shadow: 1px, 1px, 1px 1px #E0D9EC;
+    height: 4.7em;
     background-color:transparent; 
-    padding: 14%;
-    border: none;
+    border: 1px solid #d1cfcf;
     text-align: center;
   }
   #zero{
-    border-right: none;
-    // margin-right: 50%; 
+    border-bottom-left-radius: 10px;
+    border-right: none; 
     grid-column: 1 / span 2;
-    padding: 0;
     text-align: center;
   }
 }
 
-.grid-operators2{
-  border: 1px solid red;
-  height: 90%;
-  background-image: linear-gradient(to bottom,#f5d060, #fc9a66);
-  button{
-    font-size: 1.5em;
-    color: #fdfdfd;
-    box-shadow: 1px 1px 1px 1px #E0D9EC;
-    background-color:transparent; 
-    width: 100%;
-    padding: 20%; 
-    border: none;
-
-  //   // box-shadow: 1px 1px 1px 1px #E0D9EC;
-  //   text-align: center;
-  }
+.column-operators {
+  // border: 1px solid red;
+  border-bottom-right-radius: 10px;
 }
 
 
-
-// .grid-container2 > button {
-//   box-shadow: 1px 1px 1px 1px #E0D9EC;
-//   background-color:transparent; 
-//   padding: 20%;
-//   border: none;
-//   font-size: 20px;
-//   text-align: center;
-// }
-
-
-
-
-
-// .grid-numbers > button{
-//   box-shadow: 1px 1px 1px 1px #E0D9EC;
-//   background-color:transparent; 
-//   padding: 20%;
-//   border: none;
-//   font-size: 20px;
-//   text-align: center;
-// }
+.operators-item{
+  background-image: linear-gradient(to bottom,#f5d060, #fc9a66);
+  border-bottom-right-radius: 10px;
+  button{
+    background-color:transparent; 
+    height: 4.64em;
+    color: #fdfdfd;
+    // box-shadow: 0 0 0 1px #E0D9EC;
+    background-color:transparent; 
+    width: 100%;
+    border: 1px solid #d1cfcf;
+  }
+  #equal{
+    border-bottom-left-radius: 10px;
+  }
+}
 
 

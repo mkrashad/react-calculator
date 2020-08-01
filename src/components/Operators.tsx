@@ -20,7 +20,7 @@ const Operators: React.FC = () => {
 
 
   return (
-    <div className="grid-operators2">
+    <div className="operators-item">
       <button id="divide" onClick={handleOperators} value="÷">
         ÷
       </button>

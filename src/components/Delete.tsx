@@ -13,7 +13,7 @@ const Delete: React.FC = () => {
 
 
   return (
-    <div className="grid-operators">
+    <div className="delete-item">
       <button id="clear" onClick={handleClear}>
         C
       </button>

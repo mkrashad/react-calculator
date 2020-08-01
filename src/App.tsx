@@ -16,11 +16,11 @@ const App: React.FC = () => {
       <div className="wrapper">
         <Display />
         <div className="grid-container">
-          <div className="item1">
+          <div className="column-delete-numbers">
             <Delete />
             <Numbers />
           </div >
-          <div className="item2">
+          <div className="column-operators">
             <Operators />
           </div>
         </div>

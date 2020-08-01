@@ -18,7 +18,7 @@ const Numbers: React.FC = () => {
   }, [decimal]);
 
   return (
-    <div className="grid-numbers">
+    <div className="numbers-item">
       <button id="seven" onClick={handleNumbers} value="7">
         7
       </button>
