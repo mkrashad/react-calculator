@@ -1,30 +1,32 @@
 import * as React from "react";
-import { useCallback } from 'react';
+import { useCallback, Fragment } from 'react';
 import { useStoreActions } from '../hooks';
 
 const Numbers: React.FC = () => {
   const numbers = useStoreActions(actions => actions.buttons.numbers);
+  const decimal = useStoreActions(actions => actions.buttons.decimal);
 
   // Numbers
   const handleNumbers = useCallback((e) => {
     const value = e.target.value
     numbers(value);
   }, [numbers]);
-  
+
+  // Decimal
+  const handleDecimal = useCallback(() => {
+    decimal("");
+  }, [decimal]);
 
   return (
-    <React.Fragment>
-      <button id="zero" onClick={handleNumbers} value="0">
-        0
+    <div className="grid-numbers">
+      <button id="seven" onClick={handleNumbers} value="7">
+        7
       </button>
-      <button id="one" onClick={handleNumbers} value="1">
-        1
+      <button id="eight" onClick={handleNumbers} value="8">
+        8
       </button>
-      <button id="two" onClick={handleNumbers} value="2">
-        2
-      </button>
-      <button id="three" onClick={handleNumbers} value="3">
-        3
+      <button id="nine" onClick={handleNumbers} value="9">
+        9
       </button>
       <button id="four" onClick={handleNumbers} value="4">
         4
@@ -35,16 +37,22 @@ const Numbers: React.FC = () => {
       <button id="six" onClick={handleNumbers} value="6">
         6
       </button>
-      <button id="seven" onClick={handleNumbers} value="7">
-        7
+      <button id="one" onClick={handleNumbers} value="1">
+        1
       </button>
-      <button id="eight" onClick={handleNumbers} value="8">
-        8
+      <button id="two" onClick={handleNumbers} value="2">
+        2
       </button>
-      <button id="nine" onClick={handleNumbers} value="9">
-        9
+      <button id="three" onClick={handleNumbers} value="3">
+        3
       </button>
-    </React.Fragment>
+      <button id="zero" onClick={handleNumbers} value="0">
+        0
+    </button>
+      <button id="decimal" onClick={handleDecimal} value=".">
+        .
+      </button>
+    </div>
   );
 };
 

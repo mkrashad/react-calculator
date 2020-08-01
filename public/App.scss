@@ -1,6 +1,132 @@
-$base-color: #505050;
+$base-color: #fdfdfd;
+$buttons-color: #F6F3FF;
+
+body{
+  background-image: linear-gradient(to right,#9358db, #fd9569);
+}
 
 .wrapper{
-  margin-left: 500px; 
+  height: 26em;
+  margin: 10% auto;
+  width: 20%;
+  border-radius: 10px;
   background-color: $base-color;
+  padding-top:  1%;
+  box-shadow: 2px 2px 2px 2px #6d346d;
+  border: 1px solid red;
 }
+
+
+.display-main{
+  height: 22%;
+  background-color: $base-color;
+  text-align: right;
+  padding-right: 1%;
+  .display-prevValue{
+    color: gray;
+  }
+  #display{
+    font-size: 2em;
+  }
+}
+
+
+.grid-container{
+  height: 80%;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+
+.item1 {
+  border: 1px solid red;
+}
+
+
+.item2 {
+  border: 1px solid red;
+}
+
+.grid-operators{
+  background-color: #f2e0fa;
+  display: grid;
+  grid-gap: none;
+  grid-template-columns: 33% 33% 33%;
+  border: 1px solid red;
+  button{
+    font-size: 1.5em;
+    box-shadow: 1px 1px 1px 1px #E0D9EC;
+    background-color:transparent; 
+    padding: 14%;
+    border: none;
+    text-align: center;
+  }
+}
+
+
+.grid-numbers {
+  background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
+  display: grid;
+  grid-gap: none;
+  grid-template-columns: 33% 33% 33%;
+  border: 1px solid red;
+  button{
+    font-size: 1.5em;
+    box-shadow: 1px 1px 1px 1px #E0D9EC;
+    background-color:transparent; 
+    padding: 14%;
+    border: none;
+    text-align: center;
+  }
+  #zero{
+    border-right: none;
+    // margin-right: 50%; 
+    grid-column: 1 / span 2;
+    padding: 0;
+    text-align: center;
+  }
+}
+
+.grid-operators2{
+  border: 1px solid red;
+  height: 90%;
+  background-image: linear-gradient(to bottom,#f5d060, #fc9a66);
+  button{
+    font-size: 1.5em;
+    color: #fdfdfd;
+    box-shadow: 1px 1px 1px 1px #E0D9EC;
+    background-color:transparent; 
+    width: 100%;
+    padding: 20%; 
+    border: none;
+
+  //   // box-shadow: 1px 1px 1px 1px #E0D9EC;
+  //   text-align: center;
+  }
+}
+
+
+
+// .grid-container2 > button {
+//   box-shadow: 1px 1px 1px 1px #E0D9EC;
+//   background-color:transparent; 
+//   padding: 20%;
+//   border: none;
+//   font-size: 20px;
+//   text-align: center;
+// }
+
+
+
+
+
+// .grid-numbers > button{
+//   box-shadow: 1px 1px 1px 1px #E0D9EC;
+//   background-color:transparent; 
+//   padding: 20%;
+//   border: none;
+//   font-size: 20px;
+//   text-align: center;
+// }
+
+

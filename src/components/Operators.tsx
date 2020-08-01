@@ -1,12 +1,10 @@
 import * as React from "react";
-import { useCallback } from 'react';
+import { useCallback, Fragment } from 'react';
 import { useStoreActions } from '../hooks';
 
 const Operators: React.FC = () => {
   const operators = useStoreActions(actions => actions.buttons.operators);
-  const decimal = useStoreActions(actions => actions.buttons.decimal);
   const evaluate = useStoreActions(actions => actions.buttons.evaluate);
-  const clear = useStoreActions(actions => actions.buttons.clear);
 
   // Operations
   const handleOperators = useCallback((e) => {
@@ -14,10 +12,6 @@ const Operators: React.FC = () => {
     operators(value);
   }, [operators]);
 
-  // Decimal
-  const handleDecimal = useCallback(() => {
-    decimal("");
-  }, [decimal]);
 
   // Evaluate
   const handleEvaluate = useCallback(() => {
@@ -25,15 +19,13 @@ const Operators: React.FC = () => {
   }, [evaluate]);
 
 
-  // Clear
-  const handleClear = useCallback(() => {
-    clear("");
-  }, [clear]);
-
   return (
-    <React.Fragment>
-      <button id="equals" onClick={handleEvaluate} value="=">
-        =
+    <div className="grid-operators2">
+      <button id="divide" onClick={handleOperators} value="÷">
+        ÷
+      </button>
+      <button id="multiply" onClick={handleOperators} value="x">
+        x
       </button>
       <button id="add" onClick={handleOperators} value="+">
         +
@@ -41,19 +33,10 @@ const Operators: React.FC = () => {
       <button id="subtract" onClick={handleOperators} value="-">
         -
       </button>
-      <button id="multiply" onClick={handleOperators} value="x">
-        x
+      <button id="equals" onClick={handleEvaluate} value="=">
+        =
       </button>
-      <button id="divide" onClick={handleOperators} value="÷">
-        ÷
-      </button>
-      <button id="decimal" onClick={handleDecimal} value=".">
-        .
-      </button>
-      <button id="clear" onClick={handleClear}>
-        C
-      </button>
-    </React.Fragment>
+    </div>
   );
 };
 
