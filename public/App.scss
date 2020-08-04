@@ -1,54 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;1,300;1,900&display=swap');
 
+$base-color: #fdfdfd;
 $button-font-size: 1.2em;
 $button-font-family: 'Montserrat', sans-serif;
-$base-color: #fdfdfd;
-$buttons-color: #F6F3FF;
 
 body{
   background-image: linear-gradient(to right,#9358db, #fd9569);
 }
 
 .wrapper{
-  // font-family:  $font;
+  width: 20vw;
+  height: 50vh;
   margin: 10% auto;
-  height: 26em;
-  padding-top:  1%;
-  width: 21%;
-  // border-radius: 10px;
+  padding-top:  3vh;
   background-color: $base-color;
-  box-shadow: 2px 2px 2px 2px #6d346d;
+  box-shadow: 1px 4px 4px 4px #6d346d;
   border-radius: 10px;
-  // border: 1px solid red;
-  
 }
 
 
 .display-main{
-  height: 25%;
+  border-radius: 10px;
+  height: 13vh;
   background-color: $base-color;
   text-align: right;
-  padding-right: 1%;
+  padding-right: 4%;
   .display-prevValue{
     color: gray;
+    font-size: 1.3em; 
   }
   #display{
-    font-size: 2em;
+    font-size: 2.3em;
   }
 }
 
 .grid-container{
   display: grid;
   grid-template-columns: 75% 25%;
-  // border: 1px solid red;
-}
-
-
-.column-delete-numbers {
-  // height: 3em;
-  // border: 1px solid red;
-  // background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
-  background-color:transparent; 
 }
 
 
@@ -58,12 +46,10 @@ body{
   grid-gap: none;
   grid-template-columns: 33.33% 33.33% 33.33%;
   button{
+    height: 7.5vh;
+    font-size: $button-font-size;
     border: 1px solid #d1cfcf;
-    // box-shadow: 0px 0px 0px 1px #E0D9EC;
-    height: 4.6em;
     background-color:transparent; 
-    // padding: 20%;
-    // border: none;
     text-align: center;
   }
 }
@@ -71,15 +57,14 @@ body{
 
 .numbers-item {
   display: grid;
-  border-bottom-right-radius: 10px;
   grid-gap: none;
   grid-template-columns: 33.33% 33.33% 33.33%;
-  // border: 1px solid red;
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
   background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
   button{
+    height: 7.5vh;
+    font-size: $button-font-size;
     box-shadow: 1px, 1px, 1px 1px #E0D9EC;
-    height: 4.7em;
     background-color:transparent; 
     border: 1px solid #d1cfcf;
     text-align: center;
@@ -92,26 +77,21 @@ body{
   }
 }
 
-.column-operators {
-  // border: 1px solid red;
-  border-bottom-right-radius: 10px;
-}
-
 
 .operators-item{
   background-image: linear-gradient(to bottom,#f5d060, #fc9a66);
   border-bottom-right-radius: 10px;
   button{
+    height: 7.5vh;
+    font-size: $button-font-size;
     background-color:transparent; 
-    height: 4.64em;
     color: #fdfdfd;
-    // box-shadow: 0 0 0 1px #E0D9EC;
     background-color:transparent; 
     width: 100%;
     border: 1px solid #d1cfcf;
   }
-  #equal{
-    border-bottom-left-radius: 10px;
+  #equals{
+    border-bottom-right-radius: 10px;
   }
 }
 
