@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;1,300;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
 $base-color: #fdfdfd;
-$button-font-size: 1.2em;
-$button-font-family: 'Montserrat', sans-serif;
+$button-font-size: 1.5em;
+$button-font-family:'Quicksand', sans-serif;
 
 body{
   background-image: linear-gradient(to right,#9358db, #fd9569);
 }
+
 
 .wrapper{
   width: 20vw;
@@ -14,23 +15,24 @@ body{
   margin: 10% auto;
   padding-top:  3vh;
   background-color: $base-color;
-  box-shadow: 1px 4px 4px 4px #6d346d;
+  box-shadow: 0px 0px 50px 10px #6d346d;
   border-radius: 10px;
 }
 
 
 .display-main{
+  font-family: $button-font-family;
   border-radius: 10px;
   height: 13vh;
   background-color: $base-color;
   text-align: right;
-  padding-right: 4%;
+  padding-right: 5%;
   .display-prevValue{
     color: gray;
-    font-size: 1.3em; 
+    font-size: 1.4em; 
   }
   #display{
-    font-size: 2.3em;
+    font-size: 2.4em;
   }
 }
 
@@ -46,9 +48,10 @@ body{
   grid-gap: none;
   grid-template-columns: 33.33% 33.33% 33.33%;
   button{
+    font-family: $button-font-family;
     height: 7.5vh;
     font-size: $button-font-size;
-    border: 1px solid #d1cfcf;
+    border: 1px solid $base-color;
     background-color:transparent; 
     text-align: center;
   }
@@ -62,11 +65,11 @@ body{
   border-bottom-left-radius: 10px;
   background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
   button{
+    font-family: $button-font-family;
     height: 7.5vh;
     font-size: $button-font-size;
-    box-shadow: 1px, 1px, 1px 1px #E0D9EC;
     background-color:transparent; 
-    border: 1px solid #d1cfcf;
+    border: 1px solid $base-color;
     text-align: center;
   }
   #zero{
@@ -82,13 +85,14 @@ body{
   background-image: linear-gradient(to bottom,#f5d060, #fc9a66);
   border-bottom-right-radius: 10px;
   button{
+    font-family: $button-font-family;
     height: 7.5vh;
     font-size: $button-font-size;
     background-color:transparent; 
     color: #fdfdfd;
     background-color:transparent; 
     width: 100%;
-    border: 1px solid #d1cfcf;
+    border: 1px solid $base-color;
   }
   #equals{
     border-bottom-right-radius: 10px;
