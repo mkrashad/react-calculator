@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCallback, Fragment } from 'react';
+import { useCallback } from 'react';
 import { useStoreActions } from '../hooks';
 
 
@@ -13,24 +13,27 @@ const Delete: React.FC = () => {
     clear("");
   }, [clear]);
 
+  // Percent
   const handlePercent = useCallback((e) => {
     const value = e.target.value
     percent(value);
   }, [percent]);
 
-  const handleDel = useCallback(() => {
+  // Delete
+  const handleDelete = useCallback(() => {
     del("");
   }, [del]);
+
 
   return (
     <div className="delete-item">
       <button id="clear" onClick={handleClear}>
         C
       </button>
-      <button id="procent" onClick={handlePercent} value="%">
+      <button id="percent" onClick={handlePercent} value="%">
         %
       </button>
-      <button id="del" onClick={handleDel}>
+      <button id="delete" onClick={handleDelete}>
         DEL
       </button>
     </div>

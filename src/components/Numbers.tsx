@@ -1,10 +1,22 @@
 import * as React from "react";
-import { useCallback, Fragment } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useStoreActions } from '../hooks';
 
 const Numbers: React.FC = () => {
   const numbers = useStoreActions(actions => actions.buttons.numbers);
   const decimal = useStoreActions(actions => actions.buttons.decimal);
+  const keys = useStoreActions(actions => actions.buttons.keyPress);
+
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+  }, []);
+
+  // Keyboard interaction
+  const handleKeyPress = useCallback((e) => {
+    const value = e.key
+    keys(value);
+  }, [keys]);
 
   // Numbers
   const handleNumbers = useCallback((e) => {
@@ -16,6 +28,7 @@ const Numbers: React.FC = () => {
   const handleDecimal = useCallback(() => {
     decimal("");
   }, [decimal]);
+
 
   return (
     <div className="numbers-item">

@@ -4,6 +4,7 @@ export interface ButtonsModel {
   currentValue: string;
   prevValue: string;
   formula: string,
+  keyPress: Action<ButtonsModel, string>;
   numbers: Action<ButtonsModel, string>;
   operators: Action<ButtonsModel, string>;
   decimal: Action<ButtonsModel, string>;
@@ -18,22 +19,59 @@ const buttonsModel: ButtonsModel = {
   prevValue: "0",
   formula: "",
 
-
   // Actions 
-  numbers: action((state, payload) => {
+  keyPress: action((state, value) => {
+    const current = state.currentValue
+    if ((value >= '0' && value <= '9') ||
+      (value === '+' || value === '-') ||
+      (value === '/' || value === '*') ||
+      (value === '.' || value === '%')) {
+      if (state.currentValue.length < 12) {
+        if (current === "0") {
+          state.currentValue = value
+        } else {
+          state.currentValue = current + value
+        }
+        state.formula = value
+      }
+      else {
+        state.currentValue = "0"
+      }
+    }
+    if (value === 'Escape') {
+      state.currentValue = "0",
+        state.prevValue = "0"
+    }
+    if (value === 'Backspace') {
+      state.currentValue = state.currentValue.slice(0, state.currentValue.length - 1)
+      if (state.currentValue === "") {
+        state.currentValue = "0"
+      }
+    }
+    if (value === 'Enter') {
+      let expression = state.currentValue;
+      const answer = eval(state.currentValue)
+      state.currentValue = answer
+      state.prevValue = expression + '=' + answer
+    }
+  }),
+
+
+  numbers: action((state, value) => {
     const current = state.currentValue
     if (state.currentValue.length < 12) {
       if (current === "0") {
-        state.currentValue = payload
+        state.currentValue = value
       } else {
-        state.currentValue = current + payload
+        state.currentValue = current + value
       }
-      state.formula = payload
+      state.formula = value
     }
     else {
       state.currentValue = "0"
     }
   }),
+
 
   operators: action((state, value) => {
     const repeatedOperators = /[x÷+-]{3,}/
