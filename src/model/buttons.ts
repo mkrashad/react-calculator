@@ -38,6 +38,12 @@ const buttonsModel: ButtonsModel = {
         state.currentValue = "0"
       }
     }
+    if (value === 'Enter') {
+      let expression = state.currentValue;
+      const answer = eval(state.currentValue)
+      state.currentValue = answer
+      state.prevValue = expression + '=' + answer
+    }
     if (value === 'Escape') {
       state.currentValue = "0",
         state.prevValue = "0"
@@ -47,12 +53,6 @@ const buttonsModel: ButtonsModel = {
       if (state.currentValue === "") {
         state.currentValue = "0"
       }
-    }
-    if (value === 'Enter') {
-      let expression = state.currentValue;
-      const answer = eval(state.currentValue)
-      state.currentValue = answer
-      state.prevValue = expression + '=' + answer
     }
   }),
 
