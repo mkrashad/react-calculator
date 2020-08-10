@@ -26,7 +26,7 @@ const buttonsModel: ButtonsModel = {
       (value === '+' || value === '-') ||
       (value === '/' || value === '*') ||
       (value === '.' || value === '%')) {
-      if (state.currentValue.length < 12) {
+      if (state.currentValue.length < 10) {
         if (current === "0") {
           state.currentValue = value
         } else {
@@ -59,7 +59,7 @@ const buttonsModel: ButtonsModel = {
 
   numbers: action((state, value) => {
     const current = state.currentValue
-    if (state.currentValue.length < 12) {
+    if (state.currentValue.length < 10) {
       if (current === "0") {
         state.currentValue = value
       } else {
@@ -79,7 +79,7 @@ const buttonsModel: ButtonsModel = {
     state.currentValue = state.currentValue + value
     state.formula = state.currentValue
 
-    if (state.currentValue.length < 12) {
+    if (state.currentValue.length < 10) {
       // Checking repeated operators in currentValue
       const reg = new RegExp('\\' + value)
       if (reg.test(state.currentValue)) {
@@ -102,7 +102,7 @@ const buttonsModel: ButtonsModel = {
 
 
   decimal: action((state) => {
-    if (state.currentValue.length < 12) {
+    if (state.currentValue.length < 10) {
       const repeatedDecimals = /^(\d+)[.]$|[*\/+-](\d+)[.]$|[.](\d+)$/
       if (!repeatedDecimals.test(state.currentValue)) {
         state.currentValue = state.currentValue + "."

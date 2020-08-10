@@ -1,44 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
 $base-color: #fdfdfd;
-$button-font-size: 1.5em;
+$button-font-size: 3vmin;
 $button-font-family:'Quicksand', sans-serif;
 
 body{
   background-image: linear-gradient(to right,#9358db, #fd9569);
 }
 
-
-.wrapper{
-  width: 20vw;
-  height: 50vh;
-  margin: 10% auto;
-  padding-top:  3vh;
-  background-color: $base-color;
-  box-shadow: 0px 0px 50px 10px #6d346d;
-  border-radius: 10px;
+.container-sm {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
-.display-main{
+.wrapper{
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  //   width: 40vmin;
+  //   // margin: 10%;
+  //   height: 0;
+  //   margin: 10% auto;
+  //   // padding-top:  3vh;
+  //   background-color: $base-color;
+  //   box-shadow: 0px 0px 50px 10px #6d346d;
+  //   border-radius: 10px;
+  }
+  
+  
+  .display-main{
+    width: 45vmin;
   font-family: $button-font-family;
-  border-radius: 10px;
-  height: 13vh;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 17vmin;
   background-color: $base-color;
   text-align: right;
   padding-right: 5%;
   .display-prevValue{
     color: gray;
-    font-size: 1.4em; 
+    font-size: 3vmin; 
   }
   #display{
-    font-size: 2.4em;
+    font-size: 7vmin;
   }
 }
 
 .grid-container{
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 32.5vmin 12.5vmin;
 }
 
 
@@ -49,7 +62,7 @@ body{
   grid-template-columns: 33.33% 33.33% 33.33%;
   button{
     font-family: $button-font-family;
-    height: 7.5vh;
+    height: 8vmin;
     font-size: $button-font-size;
     border: 1px solid $base-color;
     background-color:transparent; 
@@ -66,7 +79,7 @@ body{
   background-image: linear-gradient(to bottom,#fcebfd, #e5ebfd);
   button{
     font-family: $button-font-family;
-    height: 7.5vh;
+    height: 8vmin;
     font-size: $button-font-size;
     background-color:transparent; 
     border: 1px solid $base-color;
@@ -84,9 +97,12 @@ body{
 .operators-item{
   background-image: linear-gradient(to bottom,#f5d060, #fc9a66);
   border-bottom-right-radius: 10px;
+  // padding-top:;
+  display: grid;
+  grid-gap: none;
   button{
     font-family: $button-font-family;
-    height: 7.5vh;
+    height: 8vmin;
     font-size: $button-font-size;
     background-color:transparent; 
     color: #fdfdfd;

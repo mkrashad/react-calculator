@@ -12,20 +12,22 @@ import Operators from "./components/Operators";
 const App: React.FC = () => {
 
   return (
-    <StoreProvider store={store}>
-      <div className="wrapper">
-        <Display />
-        <div className="grid-container">
-          <div className="column-delete-numbers">
-            <Delete />
-            <Numbers />
-          </div >
-          <div className="column-operators">
-            <Operators />
+    <div className="container-sm">
+      <StoreProvider store={store}>
+        <div className="wrapper">
+          <Display />
+          <div className="grid-container">
+            <div className="column-delete-numbers">
+              <Delete />
+              <Numbers />
+            </div >
+            <div className="column-operators">
+              <Operators />
+            </div>
           </div>
         </div>
-      </div>
-    </StoreProvider>
+      </StoreProvider>
+    </div>
   );
 };
 
