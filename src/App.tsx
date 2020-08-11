@@ -12,7 +12,7 @@ import Operators from "./components/Operators";
 const App: React.FC = () => {
 
   return (
-    <div className="container-sm">
+    <div className="container">
       <StoreProvider store={store}>
         <div className="wrapper">
           <Display />

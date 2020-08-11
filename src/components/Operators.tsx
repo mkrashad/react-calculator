@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCallback, Fragment } from 'react';
+import { useCallback } from 'react';
 import { useStoreActions } from '../hooks';
 
 const Operators: React.FC = () => {
